@@ -1,20 +1,21 @@
 # DIU NFE 241B Class Routine Website 🎓
 
-A modern, cute, stylish & minimal class routine web application designed with **Lexend** typography, pure animated cards layout, custom pastel micro-badges, inline SVGs, and real-time live tracking.
+A modern, cute, stylish & minimal class routine web application designed with **Lexend** typography, pure animated cards layout, rich realistic multi-layer SVG icons, and real-time live tracking.
 
 ## ✨ Features
 
-- **Pure Animated Cards Layout**: Grid/Table view removed for a clean, distraction-free card experience.
-- **Staggered Spring Entry Animation**: When switching between days, cards smoothly bounce and slide in with dynamic stagger.
-- **Live Class Pulse & Glow**: Real-time pulsing aura on currently active classes, animated progress bar with shimmer sweep, and live countdown.
-- **Cute Subject-Coded SVGs**:
-  - 🥗 **Nutrition Education**: Soft Mint theme (`#ecfdf5` / `#059669`)
-  - 🌿 **Environment**: Fresh Teal theme (`#f0fdfa` / `#0d9488`)
-  - 📦 **Packaging**: Warm Apricot theme (`#fff7ed` / `#ea580c`)
-  - 🚨 **Emergency**: Cute Coral/Rose theme (`#fff1f2` / `#e11d48`)
-  - 🔬 **Lab**: Lavender/Violet theme (`#faf5ff` / `#7c3aed`)
-- **Micro-Interactions**: Hover lift with playful icon tilt (`-6deg`), mobile tap bounce (`scale(0.96)`), and cute sparkle `Today` button.
-- **100% Mobile Responsive**: Fluid spacing and perfect thumb reach for any screen size.
+- **Realistic & Tactile UI**: Subtle layered shadows, frosted bevel highlights, and iOS-inspired tactile surfaces.
+- **Rich Multi-Layer Realistic SVGs**:
+  - 🥗 **Nutrition Education**: Realistic fresh green apple & leaf with gradient reflections (`#10b981` / `#047857`)
+  - 🌿 **Environment**: Dual-tone botanical seedling & sprout with realistic leaf veins (`#2dd4bf` / `#0f766e`)
+  - 📦 **Packaging**: 3D isometric cardboard shipping box with packing tape and depth shading (`#f97316` / `#c2410c`)
+  - 🚨 **Emergency**: Realistic emergency flashing siren & medical cross with glossy dome lens (`#fb7185` / `#e11d48`)
+  - 🔬 **Lab**: Realistic chemistry Erlenmeyer flask with glowing bubbling liquid and glass ticks (`#c084fc` / `#7c3aed`)
+  - ⏱️ **Watch & Navigation**: Realistic chronometer dial with metallic bezel, 3D gradient map pins, and architectural building tags.
+  - ☕ **Off Day**: Realistic ceramic coffee mug with warm rising steam swirls.
+- **Pure Animated Cards Layout**: Smooth staggered spring entrance (`animation: cardBounceIn`), live pulsing glow aura, and playful icon tilt on hover (`rotate(-5deg)`).
+- **Live Class Radar**: Real-time class tracker, progress bar with shimmer sweep, remaining countdown, and "Up Next" ribbon.
+- **100% Mobile Responsive**: Ultra-clean, thumb-friendly touch targets, smooth day swipe tabs, and zero horizontal page overflow.
 
 ## 📅 Timetable Overview (Section 241-B)
 

@@ -1,6 +1,6 @@
 /**
- * DIU NFE 241B - CUTE & ANIMATED ROUTINE APP
- * Pure Card View with Smooth Animations & Real-time Tracker
+ * DIU NFE 241B - REALISTIC & CUTE ANIMATED ROUTINE APP
+ * Pure Card View with Rich Realistic SVGs & Live Class Tracker
  */
 
 const TIME_SLOTS = [
@@ -13,51 +13,199 @@ const TIME_SLOTS = [
 
 const WEEK_DAYS = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-// Cute Subject Themes & SVG Icons
+// Realistic Multi-Layered Subject SVGs with Gradients & Depth
 const SUBJECT_THEMES = {
   "Nutrition Education": {
     code: "NFE",
-    color: "#059669",
-    bg: "#ecfdf5",
+    color: "#047857",
+    bg: "linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)",
     border: "#a7f3d0",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10c0-4-3-8-7-9.5"/><path d="M12 2c-2 2-2 5 0 7s5 2 7 0"/><path d="M12 12a4 4 0 0 0 4 4"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="appleGrad" x1="6" y1="8" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#10b981"/>
+            <stop offset="1" stop-color="#047857"/>
+          </linearGradient>
+          <linearGradient id="leafGrad" x1="16" y1="2" x2="24" y2="10" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#34d399"/>
+            <stop offset="1" stop-color="#059669"/>
+          </linearGradient>
+        </defs>
+        <path d="M16 8C16 5 18 3 20 2" stroke="#78350f" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M16 6C18 3 24 3 24 8C20 9 17 8 16 6Z" fill="url(#leafGrad)"/>
+        <path d="M16 11C13 8 7 9 7 16C7 23 12 28 16 28C20 28 25 23 25 16C25 9 19 8 16 11Z" fill="url(#appleGrad)"/>
+        <ellipse cx="11.5" cy="14" rx="2.5" ry="4" transform="rotate(-25 11.5 14)" fill="#ffffff" fill-opacity="0.38"/>
+      </svg>
+    `
   },
   "Environment": {
     code: "ENV",
-    color: "#0d9488",
-    bg: "#f0fdfa",
+    color: "#0f766e",
+    bg: "linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%)",
     border: "#99f6e4",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="envLeafGrad1" x1="8" y1="4" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#2dd4bf"/>
+            <stop offset="1" stop-color="#0f766e"/>
+          </linearGradient>
+          <linearGradient id="envLeafGrad2" x1="6" y1="12" x2="18" y2="24" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#5eead4"/>
+            <stop offset="1" stop-color="#14b8a6"/>
+          </linearGradient>
+        </defs>
+        <path d="M26 6C26 6 18 5 12 11C6.5 16.5 7 24 7 24C7 24 14.5 24.5 20 19C26 13 26 6 26 6Z" fill="url(#envLeafGrad1)"/>
+        <path d="M7 25C11 21 16 16 23 9" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-opacity="0.6"/>
+        <path d="M7 24C9 18 15 17 17 21C14 23 10 24 7 24Z" fill="url(#envLeafGrad2)"/>
+        <path d="M18 10C22 7 24 7 24 7C24 7 24 9 21 13C19 11 18 10 18 10Z" fill="#ffffff" fill-opacity="0.32"/>
+      </svg>
+    `
   },
   "Packaging": {
     code: "PKG",
-    color: "#ea580c",
-    bg: "#fff7ed",
+    color: "#c2410c",
+    bg: "linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%)",
     border: "#fed7aa",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="boxTop" x1="16" y1="4" x2="16" y2="15" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fed7aa"/>
+            <stop offset="1" stop-color="#fdba74"/>
+          </linearGradient>
+          <linearGradient id="boxLeft" x1="4" y1="11" x2="16" y2="27" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#f97316"/>
+            <stop offset="1" stop-color="#c2410c"/>
+          </linearGradient>
+          <linearGradient id="boxRight" x1="16" y1="11" x2="28" y2="27" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ea580c"/>
+            <stop offset="1" stop-color="#9a3412"/>
+          </linearGradient>
+        </defs>
+        <path d="M16 4L27 10L16 16L5 10L16 4Z" fill="url(#boxTop)"/>
+        <path d="M5 10L16 16V28L5 22V10Z" fill="url(#boxLeft)"/>
+        <path d="M16 16L27 10V22L16 28V16Z" fill="url(#boxRight)"/>
+        <path d="M16 4L16 16L20 18V26L16 28L12 26V18L16 16Z" fill="#fef3c7" fill-opacity="0.8"/>
+        <path d="M5 10L16 16L27 10" stroke="#ffedd5" stroke-width="0.8" stroke-opacity="0.6"/>
+      </svg>
+    `
   },
   "Emergency": {
     code: "EMG",
-    color: "#e11d48",
-    bg: "#fff1f2",
+    color: "#be123c",
+    bg: "linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%)",
     border: "#fecdd3",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="emgDome" x1="16" y1="4" x2="16" y2="22" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#fb7185"/>
+            <stop offset="1" stop-color="#e11d48"/>
+          </linearGradient>
+          <linearGradient id="emgBase" x1="6" y1="21" x2="26" y2="27" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#94a3b8"/>
+            <stop offset="1" stop-color="#475569"/>
+          </linearGradient>
+        </defs>
+        <ellipse cx="16" cy="24" rx="10" ry="3.5" fill="url(#emgBase)"/>
+        <rect x="7" y="21" width="18" height="3" rx="1" fill="#64748b"/>
+        <path d="M8 21C8 13 11 6 16 6C21 6 24 13 24 21H8Z" fill="url(#emgDome)"/>
+        <path d="M16 11V17M13 14H19" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M11 11C11 8 13 7 15 7C14 8 13 11 13 15C13 17 13.5 19 14 20H11C11 17 11 14 11 11Z" fill="#ffffff" fill-opacity="0.45"/>
+      </svg>
+    `
   },
   "Lab": {
     code: "LAB",
-    color: "#7c3aed",
-    bg: "#faf5ff",
+    color: "#6b21a8",
+    bg: "linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%)",
     border: "#e9d5ff",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31"/><path d="M14 2v7.31"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 1 1-4 0"/><path d="M5.52 16h12.96"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="flaskLiquid" x1="6" y1="16" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#c084fc"/>
+            <stop offset="1" stop-color="#7c3aed"/>
+          </linearGradient>
+          <linearGradient id="flaskGlass" x1="10" y1="4" x2="22" y2="28" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#e9d5ff" stop-opacity="0.85"/>
+            <stop offset="1" stop-color="#c084fc" stop-opacity="0.35"/>
+          </linearGradient>
+        </defs>
+        <path d="M13 4H19V10L26 23C27 25 25.5 27 23.5 27H8.5C6.5 27 5 25 6 23L13 10V4Z" fill="url(#flaskGlass)" stroke="#7c3aed" stroke-width="1.8" stroke-linejoin="round"/>
+        <rect x="12" y="3" width="8" height="2" rx="1" fill="#7c3aed"/>
+        <path d="M9 20L8.5 27H23.5L23 20C21 21 19 19 16 20C13 21 11 19 9 20Z" fill="url(#flaskLiquid)"/>
+        <circle cx="13" cy="23" r="1.5" fill="#f3e8ff"/>
+        <circle cx="18" cy="22" r="1" fill="#f3e8ff"/>
+        <circle cx="15.5" cy="18" r="1.2" fill="#f3e8ff" fill-opacity="0.75"/>
+        <path d="M10 24L14 12V6" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.6"/>
+      </svg>
+    `
   },
   "Default": {
     code: "CLS",
     color: "#0284c7",
-    bg: "#f0f9ff",
+    bg: "linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%)",
     border: "#bae6fd",
-    icon: `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>`
+    icon: `
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none">
+        <defs>
+          <linearGradient id="bookGrad" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#38bdf8"/>
+            <stop offset="1" stop-color="#0284c7"/>
+          </linearGradient>
+        </defs>
+        <path d="M6 6C6 6 11 5 16 8C21 5 26 6 26 6V23C26 23 21 22 16 25C11 22 6 23 6 23V6Z" fill="url(#bookGrad)"/>
+        <path d="M16 8V25" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    `
   }
 };
+
+// Realistic Pin SVG
+const REALISTIC_PIN_SVG = `
+  <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+    <defs>
+      <linearGradient id="pinGrad" x1="4" y1="2" x2="16" y2="18" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#0ea5e9"/>
+        <stop offset="1" stop-color="#0284c7"/>
+      </linearGradient>
+    </defs>
+    <path d="M10 2C6.13 2 3 5.13 3 9C3 13.5 10 18.5 10 18.5C10 18.5 17 13.5 17 9C17 5.13 13.87 2 10 2Z" fill="url(#pinGrad)"/>
+    <circle cx="10" cy="8.5" r="2.8" fill="#ffffff"/>
+    <ellipse cx="7.5" cy="6" rx="1.2" ry="1.8" transform="rotate(-30 7.5 6)" fill="#ffffff" fill-opacity="0.45"/>
+  </svg>
+`;
+
+// Realistic Building SVG
+const REALISTIC_BLDG_SVG = `
+  <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+    <defs>
+      <linearGradient id="bldgGrad" x1="2" y1="3" x2="18" y2="19" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#64748b"/>
+        <stop offset="1" stop-color="#334155"/>
+      </linearGradient>
+    </defs>
+    <rect x="3" y="4" width="14" height="14" rx="2" fill="url(#bldgGrad)"/>
+    <rect x="5.5" y="6.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <rect x="9" y="6.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <rect x="12.5" y="6.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <rect x="5.5" y="10.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <rect x="9" y="10.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <rect x="12.5" y="10.5" width="2" height="2" rx="0.5" fill="#f8fafc"/>
+    <path d="M8.5 18V14.5C8.5 14.2 8.7 14 9 14H11C11.3 14 11.5 14.2 11.5 14.5V18" fill="#bae6fd"/>
+  </svg>
+`;
+
+// Realistic Duration Clock SVG
+const REALISTIC_DURATION_SVG = `
+  <svg viewBox="0 0 20 20" width="14" height="14" fill="none">
+    <circle cx="10" cy="10" r="7.5" fill="#f8fafc" stroke="#0284c7" stroke-width="1.6"/>
+    <path d="M10 6.5V10L12.5 11.5" stroke="#0284c7" stroke-width="1.6" stroke-linecap="round"/>
+  </svg>
+`;
 
 // Section 241-B Routine Mapping
 const ROUTINE_DATA = {
@@ -111,9 +259,7 @@ const radarProgressBar = document.getElementById("radarProgressBar");
 const progressElapsedText = document.getElementById("progressElapsedText");
 const progressRemainingText = document.getElementById("progressRemainingText");
 const radarNextCard = document.getElementById("radarNextCard");
-const nextSubject = document.getElementById("nextSubject");
-const nextDetails = document.getElementById("nextDetails");
-const nextCountdown = document.getElementById("nextCountdown");
+const tickerTrack = document.getElementById("tickerTrack");
 
 const todayQuickBtn = document.getElementById("todayQuickBtn");
 const dayTabsContainer = document.getElementById("dayTabs");
@@ -239,17 +385,11 @@ function updateLiveRadar(dt) {
     
     radarSubject.textContent = liveClass.subject;
     radarSubjectIcon.innerHTML = liveClass.theme.icon;
-    radarSubjectIcon.style.color = liveClass.theme.color;
-    radarSubjectIcon.style.backgroundColor = liveClass.theme.bg;
+    radarSubjectIcon.style.background = liveClass.theme.bg;
+    radarSubjectIcon.style.border = `1px solid ${liveClass.theme.border}`;
 
-    radarRoom.innerHTML = `
-      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-      <span>${liveClass.room}</span>
-    `;
-    radarTime.innerHTML = `
-      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 14"/></svg>
-      <span>${liveClass.displayTime}</span>
-    `;
+    radarRoom.innerHTML = `${REALISTIC_PIN_SVG}<span>Room: ${liveClass.room}</span>`;
+    radarTime.innerHTML = `${REALISTIC_DURATION_SVG}<span>${liveClass.displayTime}</span>`;
 
     const totalDuration = liveClass.endMin - liveClass.startMin;
     const elapsed = currentMin - liveClass.startMin;
@@ -263,9 +403,9 @@ function updateLiveRadar(dt) {
   } else {
     radarProgressWrap.style.display = "none";
 
-    radarSubjectIcon.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/></svg>`;
-    radarSubjectIcon.style.color = "#0284c7";
-    radarSubjectIcon.style.backgroundColor = "#e0f2fe";
+    radarSubjectIcon.innerHTML = SUBJECT_THEMES["Default"].icon;
+    radarSubjectIcon.style.background = SUBJECT_THEMES["Default"].bg;
+    radarSubjectIcon.style.border = `1px solid ${SUBJECT_THEMES["Default"].border}`;
 
     if (todaySchedule.length === 0) {
       radarStatusWrap.classList.add("off");
@@ -281,17 +421,11 @@ function updateLiveRadar(dt) {
       radarMeta.textContent = startIn > 60 ? `Starts in ${Math.floor(startIn/60)}h ${startIn%60}m` : `Starts in ${startIn} mins`;
       radarSubject.textContent = todaySchedule[0].subject;
       radarSubjectIcon.innerHTML = todaySchedule[0].theme.icon;
-      radarSubjectIcon.style.color = todaySchedule[0].theme.color;
-      radarSubjectIcon.style.backgroundColor = todaySchedule[0].theme.bg;
+      radarSubjectIcon.style.background = todaySchedule[0].theme.bg;
+      radarSubjectIcon.style.border = `1px solid ${todaySchedule[0].theme.border}`;
 
-      radarRoom.innerHTML = `
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>${todaySchedule[0].room}</span>
-      `;
-      radarTime.innerHTML = `
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 14"/></svg>
-        <span>${todaySchedule[0].slot.start} AM</span>
-      `;
+      radarRoom.innerHTML = `${REALISTIC_PIN_SVG}<span>Room: ${todaySchedule[0].room}</span>`;
+      radarTime.innerHTML = `${REALISTIC_DURATION_SVG}<span>Starts ${todaySchedule[0].slot.start} AM</span>`;
     } else if (currentMin >= todaySchedule[todaySchedule.length - 1].endMin) {
       radarStatusWrap.classList.add("off");
       radarStatusBadge.textContent = "DONE TODAY";
@@ -309,22 +443,91 @@ function updateLiveRadar(dt) {
     }
   }
 
-  // Up Next Ribbon
-  if (nextInfo) {
-    radarNextCard.style.display = "flex";
-    nextSubject.textContent = nextInfo.classItem.subject;
-    const dayStr = nextInfo.isToday ? "Today" : nextInfo.dayName;
-    nextDetails.textContent = `${dayStr} • ${nextInfo.classItem.slot.start} (${nextInfo.classItem.room})`;
+  // Up Next Smooth News Ticker
+  updateNewsTicker(nextInfo, dayName, currentMin);
+}
 
-    if (nextInfo.isToday && nextInfo.minutesUntil !== null) {
-      const mins = Math.ceil(nextInfo.minutesUntil);
-      nextCountdown.textContent = mins < 60 ? `in ${mins}m` : `in ${Math.floor(mins/60)}h ${mins%60}m`;
-    } else {
-      nextCountdown.textContent = nextInfo.dayName;
-    }
-  } else {
+let lastTickerKey = "";
+
+/**
+ * Updates the Up Next News Ticker smoothly
+ * Uses duplicate twin sets for 100% gapless, seamless 60fps infinite marquee
+ * Caches tickerKey so DOM updates never interrupt or reset running CSS animation
+ */
+function updateNewsTicker(nextInfo, dayName, currentMin) {
+  if (!radarNextCard || !tickerTrack) return;
+
+  if (!nextInfo) {
     radarNextCard.style.display = "none";
+    return;
   }
+
+  radarNextCard.style.display = "flex";
+
+  const cls = nextInfo.classItem;
+  let countdownText = "";
+  if (nextInfo.isToday && nextInfo.minutesUntil !== null) {
+    const mins = Math.ceil(nextInfo.minutesUntil);
+    countdownText = mins < 60 ? `in ${mins}m` : `in ${Math.floor(mins / 60)}h ${mins % 60}m`;
+  } else {
+    countdownText = nextInfo.dayName;
+  }
+
+  // Find if another class follows after nextInfo today
+  const todayClasses = getDaySchedule(dayName);
+  const followingClass = nextInfo.isToday
+    ? todayClasses.find(c => c.startMin >= cls.endMin)
+    : null;
+
+  // Cache key: only update DOM if values meaningfully change to prevent animation jitter
+  const tickerKey = `${cls.code}|${cls.subject}|${cls.room}|${cls.slot.start}|${countdownText}|${followingClass ? followingClass.code : "none"}`;
+  if (tickerKey === lastTickerKey && tickerTrack.children.length === 2) {
+    return; // Keep smooth hardware-accelerated CSS marquee running uninterrupted!
+  }
+  lastTickerKey = tickerKey;
+
+  const dayStr = nextInfo.isToday ? "Today" : nextInfo.dayName;
+
+  // Build the single set of rich ticker items
+  let singleContent = `
+    <div class="ticker-pill highlight">
+      <span class="ticker-badge-pill">${countdownText}</span>
+      <span class="ticker-sub-name">${cls.subject}</span>
+      <span class="ticker-tag-room">⏰ ${dayStr} ${cls.slot.start} AM</span>
+      <span class="ticker-tag-room">📍 Room ${cls.room}</span>
+      <span class="ticker-tag-room">👨‍🏫 ${cls.teacher}</span>
+    </div>
+    <span class="ticker-sep">✦</span>
+  `;
+
+  if (followingClass) {
+    singleContent += `
+      <div class="ticker-pill">
+        <span class="ticker-badge-pill amber">THEN</span>
+        <span class="ticker-sub-name">${followingClass.subject}</span>
+        <span class="ticker-tag-room">⏰ ${followingClass.slot.start} AM</span>
+        <span class="ticker-tag-room">📍 Room ${followingClass.room}</span>
+        <span class="ticker-tag-room">👨‍🏫 ${followingClass.teacher}</span>
+      </div>
+      <span class="ticker-sep">✦</span>
+    `;
+  }
+
+  singleContent += `
+    <div class="ticker-pill">
+      <span class="ticker-badge-pill green">SECTION</span>
+      <span class="ticker-sub-name">NFE 241-B</span>
+      <span class="ticker-tag-room">🏛️ Daffodil International University</span>
+    </div>
+    <span class="ticker-sep">✦</span>
+  `;
+
+  // Render 2 identical twin sets side-by-side inside the track
+  // The CSS @keyframes tickerScroll moves 0 to -50% perfectly looping forever!
+  tickerTrack.innerHTML = `
+    <div class="ticker-content">${singleContent}</div>
+    <div class="ticker-content" aria-hidden="true">${singleContent}</div>
+  `;
 }
 
 /**
@@ -355,7 +558,7 @@ function renderDayTabs(currentDayName) {
 }
 
 /**
- * Render Day Cards with Staggered Entrance Animation
+ * Render Day Cards with Staggered Entrance Animation & Realistic Depth
  */
 function renderCardsView(dt) {
   const day = state.selectedDay;
@@ -372,9 +575,29 @@ function renderCardsView(dt) {
     
     cardsGrid.innerHTML = `
       <div class="cute-empty-card" style="--i: 0">
-        <div class="empty-icon-wrap">☕</div>
+        <div class="empty-icon-wrap">
+          <svg viewBox="0 0 40 40" width="38" height="38" fill="none">
+            <defs>
+              <linearGradient id="mugGrad" x1="8" y1="12" x2="28" y2="34" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#fbbf24"/>
+                <stop offset="1" stop-color="#d97706"/>
+              </linearGradient>
+              <linearGradient id="steamGrad" x1="14" y1="4" x2="14" y2="12" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#d97706" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#f59e0b" stop-opacity="0.1"/>
+              </linearGradient>
+            </defs>
+            <path d="M14 10C13 8 15 6 14 4" stroke="url(#steamGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 10C19 8 21 6 20 4" stroke="url(#steamGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M26 10C25 8 27 6 26 4" stroke="url(#steamGrad)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 13H27V26C27 29.5 24 32 20 32H16C12 32 9 29.5 9 26V13Z" fill="url(#mugGrad)"/>
+            <path d="M27 16H29.5C31.5 16 33 17.5 33 19.5V21.5C33 23.5 31.5 25 29.5 25H27" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+            <ellipse cx="18" cy="13" rx="9" ry="2" fill="#fef3c7"/>
+            <ellipse cx="18" cy="13.5" rx="8" ry="1.5" fill="#78350f"/>
+          </svg>
+        </div>
         <h3>No Classes on ${day}</h3>
-        <p>No lectures scheduled for NFE Section 241-B on this day.</p>
+        <p>No lectures scheduled for NFE Section 241-B on this day. Take a break & recharge!</p>
       </div>
     `;
     return;
@@ -410,7 +633,7 @@ function renderCardsView(dt) {
         </div>
         
         <div class="card-subject-row">
-          <div class="card-subj-icon" style="background: ${item.theme.bg}; color: ${item.theme.color}">
+          <div class="card-subj-icon" style="background: ${item.theme.bg}; border: 1px solid ${item.theme.border}">
             ${item.theme.icon}
           </div>
           <div class="card-subj-info">
@@ -421,16 +644,16 @@ function renderCardsView(dt) {
 
         <div class="card-meta-row">
           <span class="meta-bubble meta-bubble-room">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            ${item.room}
+            ${REALISTIC_PIN_SVG}
+            <span>${item.room}</span>
           </span>
           <span class="meta-bubble">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="9" x2="15" y1="6" y2="6"/><line x1="9" x2="15" y1="10" y2="10"/></svg>
-            ${item.building}
+            ${REALISTIC_BLDG_SVG}
+            <span>${item.building}</span>
           </span>
           <span class="meta-bubble">
-            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 14"/></svg>
-            1h 30m
+            ${REALISTIC_DURATION_SVG}
+            <span>1h 30m</span>
           </span>
         </div>
       </div>
