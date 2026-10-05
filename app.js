@@ -339,26 +339,42 @@ function getDaySchedule(dayName) {
 }
 
 /**
- * Find next upcoming class
+ * Find next upcoming class:
+ * 1. Checks if any remaining class exists TODAY after currentMinutes.
+ * 2. If no remaining class today, finds tomorrow's (or next class day's) first class.
  */
 function findNextUpcomingClass(fromDayName, currentMinutes) {
   const dayIndex = WEEK_DAYS.indexOf(fromDayName);
   
-  // Today's next classes
+  // 1. Any remaining classes today?
   const todayClasses = getDaySchedule(fromDayName);
   for (const c of todayClasses) {
     if (c.startMin > currentMinutes) {
-      return { classItem: c, dayName: fromDayName, isToday: true, minutesUntil: c.startMin - currentMinutes };
+      return {
+        classItem: c,
+        dayName: fromDayName,
+        isToday: true,
+        isTomorrow: false,
+        daysAway: 0,
+        minutesUntil: c.startMin - currentMinutes
+      };
     }
   }
 
-  // Future days
+  // 2. Otherwise: check future days (tomorrow = 1, day after = 2, etc.)
   for (let i = 1; i <= 7; i++) {
     const nextIdx = (dayIndex + i) % 7;
     const nextDay = WEEK_DAYS[nextIdx];
     const nextDayClasses = getDaySchedule(nextDay);
     if (nextDayClasses.length > 0) {
-      return { classItem: nextDayClasses[0], dayName: nextDay, isToday: false, minutesUntil: null };
+      return {
+        classItem: nextDayClasses[0],
+        dayName: nextDay,
+        isToday: false,
+        isTomorrow: (i === 1),
+        daysAway: i,
+        minutesUntil: null
+      };
     }
   }
 
@@ -450,9 +466,11 @@ function updateLiveRadar(dt) {
 let lastTickerKey = "";
 
 /**
- * Updates the Up Next News Ticker smoothly
- * Uses duplicate twin sets for 100% gapless, seamless 60fps infinite marquee
- * Caches tickerKey so DOM updates never interrupt or reset running CSS animation
+ * Updates the Up Next News Ticker cleanly:
+ * - If remaining classes exist today, shows the next upcoming class today with countdown.
+ * - If today's classes are finished or campus is off today, shows tomorrow's (or next class day's) first class.
+ * - Displays clean, relevant class information (Subject, Time, Room, Building) without clutter.
+ * - Uses twin duplicate sets for 100% seamless, continuous 60fps infinite marquee looping.
  */
 function updateNewsTicker(nextInfo, dayName, currentMin) {
   if (!radarNextCard || !tickerTrack) return;
@@ -465,68 +483,51 @@ function updateNewsTicker(nextInfo, dayName, currentMin) {
   radarNextCard.style.display = "flex";
 
   const cls = nextInfo.classItem;
-  let countdownText = "";
-  if (nextInfo.isToday && nextInfo.minutesUntil !== null) {
+  let badgeLabel = "";
+  let badgeClass = "";
+  let timeLabel = "";
+
+  if (nextInfo.isToday) {
     const mins = Math.ceil(nextInfo.minutesUntil);
-    countdownText = mins < 60 ? `in ${mins}m` : `in ${Math.floor(mins / 60)}h ${mins % 60}m`;
+    const countdown = mins < 60 ? `in ${mins}m` : `in ${Math.floor(mins / 60)}h ${mins % 60}m`;
+    badgeLabel = `TODAY • ${countdown}`;
+    badgeClass = "green";
+    timeLabel = `${cls.displayTime}`;
+  } else if (nextInfo.isTomorrow) {
+    badgeLabel = "TOMORROW";
+    badgeClass = "amber";
+    timeLabel = `Tomorrow, ${cls.displayTime}`;
   } else {
-    countdownText = nextInfo.dayName;
+    badgeLabel = nextInfo.dayName.toUpperCase();
+    badgeClass = "cyan";
+    timeLabel = `${nextInfo.dayName}, ${cls.displayTime}`;
   }
 
-  // Find if another class follows after nextInfo today
-  const todayClasses = getDaySchedule(dayName);
-  const followingClass = nextInfo.isToday
-    ? todayClasses.find(c => c.startMin >= cls.endMin)
-    : null;
-
-  // Cache key: only update DOM if values meaningfully change to prevent animation jitter
-  const tickerKey = `${cls.code}|${cls.subject}|${cls.room}|${cls.slot.start}|${countdownText}|${followingClass ? followingClass.code : "none"}`;
+  // Cache key: prevents re-rendering DOM unnecessarily so CSS animation is never interrupted
+  const tickerKey = `${badgeLabel}|${cls.subject}|${timeLabel}|${cls.room}|${cls.building}`;
   if (tickerKey === lastTickerKey && tickerTrack.children.length === 2) {
-    return; // Keep smooth hardware-accelerated CSS marquee running uninterrupted!
+    return;
   }
   lastTickerKey = tickerKey;
 
-  const dayStr = nextInfo.isToday ? "Today" : nextInfo.dayName;
-
-  // Build the single set of rich ticker items
-  let singleContent = `
+  // Clean pill with ONLY actual class info: Subject, Time, Room, and Building
+  const pillHtml = `
     <div class="ticker-pill highlight">
-      <span class="ticker-badge-pill">${countdownText}</span>
+      <span class="ticker-badge-pill ${badgeClass}">${badgeLabel}</span>
       <span class="ticker-sub-name">${cls.subject}</span>
-      <span class="ticker-tag-room">⏰ ${dayStr} ${cls.slot.start} AM</span>
-      <span class="ticker-tag-room">📍 Room ${cls.room}</span>
-      <span class="ticker-tag-room">👨‍🏫 ${cls.teacher}</span>
+      <span class="ticker-tag-room">⏰ ${timeLabel}</span>
+      <span class="ticker-tag-room">📍 Room: ${cls.room}</span>
+      <span class="ticker-tag-room">🏢 ${cls.building}</span>
     </div>
     <span class="ticker-sep">✦</span>
   `;
 
-  if (followingClass) {
-    singleContent += `
-      <div class="ticker-pill">
-        <span class="ticker-badge-pill amber">THEN</span>
-        <span class="ticker-sub-name">${followingClass.subject}</span>
-        <span class="ticker-tag-room">⏰ ${followingClass.slot.start} AM</span>
-        <span class="ticker-tag-room">📍 Room ${followingClass.room}</span>
-        <span class="ticker-tag-room">👨‍🏫 ${followingClass.teacher}</span>
-      </div>
-      <span class="ticker-sep">✦</span>
-    `;
-  }
+  // Repeat twice in each set so it spans nicely across all viewport widths
+  const singleSet = `${pillHtml}${pillHtml}`;
 
-  singleContent += `
-    <div class="ticker-pill">
-      <span class="ticker-badge-pill green">SECTION</span>
-      <span class="ticker-sub-name">NFE 241-B</span>
-      <span class="ticker-tag-room">🏛️ Daffodil International University</span>
-    </div>
-    <span class="ticker-sep">✦</span>
-  `;
-
-  // Render 2 identical twin sets side-by-side inside the track
-  // The CSS @keyframes tickerScroll moves 0 to -50% perfectly looping forever!
   tickerTrack.innerHTML = `
-    <div class="ticker-content">${singleContent}</div>
-    <div class="ticker-content" aria-hidden="true">${singleContent}</div>
+    <div class="ticker-content">${singleSet}</div>
+    <div class="ticker-content" aria-hidden="true">${singleSet}</div>
   `;
 }
 
