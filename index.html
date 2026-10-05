@@ -106,7 +106,9 @@
             <span class="remaining-highlight" id="progressRemainingText">-- mins left</span>
           </div>
           <div class="cute-track">
-            <div class="cute-fill" id="radarProgressBar" style="width: 0%"></div>
+            <div class="cute-fill" id="radarProgressBar" style="width: 0%">
+              <span class="cute-scrubber-dot"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -127,34 +129,15 @@
 
     <!-- 3. Navigation Controls Bar -->
     <nav class="nav-control-bar">
-      <div class="day-selector-group">
-        <button class="cute-today-btn" id="todayQuickBtn" title="Go to Today">
-          <span class="sparkle-anim">
-            <svg viewBox="0 0 20 20" width="15" height="15" fill="none">
-              <defs>
-                <linearGradient id="spkGold" x1="2" y1="2" x2="18" y2="18" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#fbbf24"/>
-                  <stop offset="0.5" stop-color="#f59e0b"/>
-                  <stop offset="1" stop-color="#d97706"/>
-                </linearGradient>
-              </defs>
-              <path d="M10 2L12.2 7.8L18 10L12.2 12.2L10 18L7.8 12.2L2 10L7.8 7.8L10 2Z" fill="url(#spkGold)"/>
-              <circle cx="10" cy="10" r="1.6" fill="#ffffff"/>
-            </svg>
-          </span>
-          <span>Today</span>
-        </button>
-
-        <div class="day-tabs-track">
-          <div class="day-tabs" id="dayTabs">
-            <button class="tab-item" data-day="Saturday">Sat</button>
-            <button class="tab-item" data-day="Sunday">Sun</button>
-            <button class="tab-item" data-day="Monday">Mon</button>
-            <button class="tab-item" data-day="Tuesday">Tue</button>
-            <button class="tab-item" data-day="Wednesday">Wed</button>
-            <button class="tab-item" data-day="Thursday">Thu</button>
-            <button class="tab-item" data-day="Friday">Fri</button>
-          </div>
+      <div class="day-tabs-track">
+        <div class="day-tabs" id="dayTabs">
+          <button class="tab-item" data-day="Saturday">Sat</button>
+          <button class="tab-item" data-day="Sunday">Sun</button>
+          <button class="tab-item" data-day="Monday">Mon</button>
+          <button class="tab-item" data-day="Tuesday">Tue</button>
+          <button class="tab-item" data-day="Wednesday">Wed</button>
+          <button class="tab-item" data-day="Thursday">Thu</button>
+          <button class="tab-item" data-day="Friday">Fri</button>
         </div>
       </div>
     </nav>

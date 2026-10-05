@@ -247,6 +247,7 @@ const state = {
 // DOM References
 const currentTimeEl = document.getElementById("currentTime");
 const currentDateEl = document.getElementById("currentDate");
+const radarCard = document.getElementById("radarCard");
 const radarStatusWrap = document.getElementById("radarStatusWrap");
 const radarStatusBadge = document.getElementById("radarStatusBadge");
 const radarMeta = document.getElementById("radarMeta");
@@ -261,7 +262,6 @@ const progressRemainingText = document.getElementById("progressRemainingText");
 const radarNextCard = document.getElementById("radarNextCard");
 const tickerTrack = document.getElementById("tickerTrack");
 
-const todayQuickBtn = document.getElementById("todayQuickBtn");
 const dayTabsContainer = document.getElementById("dayTabs");
 const cardsGrid = document.getElementById("cardsGrid");
 const activeDayHeading = document.getElementById("activeDayHeading");
@@ -395,6 +395,7 @@ function updateLiveRadar(dt) {
   radarStatusWrap.className = "live-status-pill";
 
   if (liveClass) {
+    if (radarCard) radarCard.className = "live-hero-card is-live-active";
     radarStatusWrap.classList.add("live");
     radarStatusBadge.textContent = "LIVE CLASS NOW";
     radarMeta.textContent = `Ends at ${liveClass.slot.end}`;
@@ -424,6 +425,7 @@ function updateLiveRadar(dt) {
     radarSubjectIcon.style.border = `1px solid ${SUBJECT_THEMES["Default"].border}`;
 
     if (todaySchedule.length === 0) {
+      if (radarCard) radarCard.className = "live-hero-card is-off-active";
       radarStatusWrap.classList.add("off");
       radarStatusBadge.textContent = "CAMPUS OFF";
       radarMeta.textContent = "Relax & Recharge";
@@ -431,6 +433,7 @@ function updateLiveRadar(dt) {
       radarRoom.innerHTML = `<span>✨ Free Day</span>`;
       radarTime.innerHTML = `<span>No lectures</span>`;
     } else if (currentMin < todaySchedule[0].startMin) {
+      if (radarCard) radarCard.className = "live-hero-card is-next-active";
       radarStatusWrap.classList.add("next");
       radarStatusBadge.textContent = "UPCOMING TODAY";
       const startIn = Math.ceil(todaySchedule[0].startMin - currentMin);
@@ -443,6 +446,7 @@ function updateLiveRadar(dt) {
       radarRoom.innerHTML = `${REALISTIC_PIN_SVG}<span>Room: ${todaySchedule[0].room}</span>`;
       radarTime.innerHTML = `${REALISTIC_DURATION_SVG}<span>Starts ${todaySchedule[0].slot.start} AM</span>`;
     } else if (currentMin >= todaySchedule[todaySchedule.length - 1].endMin) {
+      if (radarCard) radarCard.className = "live-hero-card is-done-active";
       radarStatusWrap.classList.add("off");
       radarStatusBadge.textContent = "DONE TODAY";
       radarMeta.textContent = "All classes over";
@@ -450,6 +454,7 @@ function updateLiveRadar(dt) {
       radarRoom.innerHTML = `<span>🎉 Day Complete</span>`;
       radarTime.innerHTML = `<span>See you next session</span>`;
     } else {
+      if (radarCard) radarCard.className = "live-hero-card is-next-active";
       radarStatusWrap.classList.add("next");
       radarStatusBadge.textContent = "BREAK TIME";
       radarMeta.textContent = "Interval";
@@ -549,13 +554,16 @@ function renderDayTabs(currentDayName) {
     } else {
       tab.classList.remove("has-today-dot");
     }
+
+    // Indicate days that have classes scheduled
+    const daySched = getDaySchedule(day);
+    if (daySched.length > 0) {
+      tab.classList.add("has-classes");
+    } else {
+      tab.classList.remove("has-classes");
+    }
   });
 
-  if (state.selectedDay === currentDayName) {
-    todayQuickBtn.classList.add("is-active-day");
-  } else {
-    todayQuickBtn.classList.remove("is-active-day");
-  }
 }
 
 /**
@@ -687,10 +695,44 @@ function setupEventListeners() {
       selectDay(tab.getAttribute("data-day"));
     }
   });
+}
 
-  todayQuickBtn.addEventListener("click", () => {
-    const dt = getActiveDateTime();
-    selectDay(dt.dayName);
+/**
+ * Update card live states seamlessly without re-rendering the whole DOM
+ */
+function updateTodayCardsLiveState(dt) {
+  if (state.selectedDay !== dt.dayName) return;
+  const currentMin = dt.totalMinutes;
+  const cards = cardsGrid.querySelectorAll(".class-cute-card");
+  const schedule = getDaySchedule(dt.dayName);
+
+  cards.forEach((card, idx) => {
+    const item = schedule[idx];
+    if (!item) return;
+
+    if (currentMin >= item.startMin && currentMin < item.endMin) {
+      if (!card.classList.contains("is-live")) {
+        card.classList.add("is-live");
+        card.classList.remove("is-passed");
+        const topRow = card.querySelector(".card-top-row");
+        if (topRow) {
+          const oldBadge = topRow.querySelector(".card-status-chip");
+          if (oldBadge) oldBadge.remove();
+          topRow.insertAdjacentHTML("beforeend", `<span class="card-status-chip chip-live-badge"><span class="chip-live-dot"></span> LIVE NOW</span>`);
+        }
+      }
+    } else if (currentMin >= item.endMin) {
+      if (!card.classList.contains("is-passed")) {
+        card.classList.add("is-passed");
+        card.classList.remove("is-live");
+        const topRow = card.querySelector(".card-top-row");
+        if (topRow) {
+          const oldBadge = topRow.querySelector(".card-status-chip");
+          if (oldBadge) oldBadge.remove();
+          topRow.insertAdjacentHTML("beforeend", `<span class="card-status-chip chip-done-badge">DONE</span>`);
+        }
+      }
+    }
   });
 }
 
@@ -707,6 +749,7 @@ function tick() {
   updateClock(dt);
   updateLiveRadar(dt);
   renderDayTabs(dt.dayName);
+  updateTodayCardsLiveState(dt);
 }
 
 /**

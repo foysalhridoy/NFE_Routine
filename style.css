@@ -420,22 +420,21 @@ body {
 
 .cute-track {
   width: 100%;
-  height: 8px;
-  background: #e2e8f0;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  height: 9px;
+  background: #edf2f7;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.08);
   border-radius: var(--radius-full);
-  overflow: hidden;
   position: relative;
+  overflow: visible;
 }
 
 .cute-fill {
   height: 100%;
-  background: linear-gradient(90deg, #10b981, #059669);
+  background: linear-gradient(90deg, #0284c7 0%, #06b6d4 50%, #10b981 100%);
   border-radius: var(--radius-full);
   transition: width 0.4s ease;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.35);
 }
 
 .cute-fill::after {
@@ -445,31 +444,49 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: shimmerSweep 2.5s infinite;
+  border-radius: var(--radius-full);
 }
 
-/* Up Next Smooth News Ticker */
+.cute-scrubber-dot {
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2.5px solid #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8), 0 2px 5px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+/* Up Next Smooth News Ticker (Glass Capsule Edition) */
 .up-next-ticker {
   position: relative;
   display: flex;
   align-items: center;
   gap: 0;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-full);
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
   font-size: 0.8rem;
   height: 42px;
   cursor: pointer;
   user-select: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s var(--spring-ease);
 }
 
 .up-next-ticker:hover {
-  border-color: rgba(2, 132, 199, 0.35);
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
 }
 
 .ticker-badge {
@@ -614,64 +631,21 @@ body {
 .nav-control-bar {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--bg-card);
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-realistic);
   animation: heroEntrance 0.6s var(--spring-ease) both;
-}
-
-.day-selector-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
   width: 100%;
-}
-
-.cute-today-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--cyan-grad);
-  border: none;
-  color: #ffffff;
-  font-family: var(--font-main);
-  font-size: 0.82rem;
-  font-weight: 700;
-  padding: 7px 15px;
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  flex-shrink: 0;
-  min-height: 36px;
-  box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transition: transform 0.2s var(--spring-ease), box-shadow 0.2s ease;
-}
-
-.cute-today-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 14px rgba(2, 132, 199, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-
-.cute-today-btn:active {
-  transform: scale(0.95);
-}
-
-.cute-today-btn.is-active-day {
-  background: var(--text-dark);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.sparkle-anim {
-  display: flex;
-  align-items: center;
 }
 
 .day-tabs-track {
   overflow-x: auto;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  flex: 1;
+  width: 100%;
 }
 
 .day-tabs-track::-webkit-scrollbar {
@@ -679,27 +653,33 @@ body {
 }
 
 .day-tabs {
-  display: inline-flex;
-  background: #eef2f6;
-  padding: 3px;
+  display: flex;
+  width: 100%;
+  background: #f1f5f9;
+  padding: 4px;
   border-radius: var(--radius-full);
-  gap: 2px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+  gap: 4px;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.05);
 }
 
 .tab-item {
+  flex: 1;
+  text-align: center;
   background: transparent;
   border: none;
   font-family: var(--font-main);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   color: var(--text-subtle);
-  padding: 5px 13px;
+  padding: 7px 10px;
   border-radius: var(--radius-full);
   cursor: pointer;
   white-space: nowrap;
   position: relative;
-  min-height: 30px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s var(--spring-ease);
 }
 
@@ -715,18 +695,38 @@ body {
   background: #ffffff;
   color: var(--cyan-primary);
   font-weight: 700;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.tab-item.has-classes::before {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cyan-primary);
+  opacity: 0.45;
+  transition: all 0.2s ease;
+}
+
+.tab-item.active.has-classes::before {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.25);
 }
 
 .tab-item.has-today-dot::after {
   content: '';
   position: absolute;
   top: 5px;
-  right: 5px;
-  width: 5px;
-  height: 5px;
+  right: 6px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--cyan-primary);
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
 }
 
 /* =========================================================
@@ -790,13 +790,13 @@ body {
    ========================================================= */
 .class-cute-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: var(--radius-2xl);
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: var(--shadow-realistic);
+  gap: 13px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   position: relative;
   overflow: hidden;
   cursor: default;
@@ -804,13 +804,31 @@ body {
   /* Staggered entrance */
   animation: cardBounceIn 0.45s var(--spring-ease) both;
   animation-delay: calc(var(--i, 0) * 0.08s);
-  transition: transform 0.25s var(--spring-ease), box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.28s var(--spring-ease), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.class-cute-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.class-cute-card:hover::after {
+  left: 160%;
+  transition: left 0.85s ease-in-out;
 }
 
 .class-cute-card:hover {
-  transform: translateY(-5px) scale(1.015);
-  box-shadow: var(--shadow-hover);
-  border-color: #cbd5e1;
+  transform: translateY(-6px) scale(1.012);
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.04), 0 20px 30px -4px rgba(2, 132, 199, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(2, 132, 199, 0.35);
 }
 
 .class-cute-card:active {
@@ -821,7 +839,7 @@ body {
 .class-cute-card.is-live {
   border-color: var(--emerald);
   background: linear-gradient(135deg, #ffffff 0%, var(--emerald-soft) 100%);
-  box-shadow: var(--shadow-live);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25), 0 14px 30px -2px rgba(5, 150, 105, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.95);
   animation: cardBounceIn 0.45s var(--spring-ease) both, livePulseBorder 3s infinite ease-in-out;
   animation-delay: calc(var(--i, 0) * 0.08s), 0.5s;
 }
@@ -833,14 +851,22 @@ body {
   left: 0;
   bottom: 0;
   width: 5px;
-  background: var(--emerald);
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
   border-top-left-radius: var(--radius-2xl);
   border-bottom-left-radius: var(--radius-2xl);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
 }
 
 .class-cute-card.is-passed {
-  opacity: 0.65;
-  background: #fbfcfd;
+  opacity: 0.62;
+  background: #fbfcfe;
+  filter: grayscale(12%);
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s var(--spring-ease);
+}
+
+.class-cute-card.is-passed:hover {
+  opacity: 0.95;
+  filter: none;
 }
 
 .card-top-row {
@@ -1188,19 +1214,14 @@ body {
   }
 
   .nav-control-bar {
-    padding: 6px 8px;
+    padding: 4px;
     border-radius: var(--radius-xl);
   }
 
-  .cute-today-btn {
-    padding: 6px 11px;
-    font-size: 0.78rem;
-    min-height: 32px;
-  }
-
   .tab-item {
-    padding: 4px 10px;
+    padding: 6px 4px;
     font-size: 0.75rem;
+    min-height: 30px;
   }
 
   .cards-flow {
