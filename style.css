@@ -1,0 +1,1091 @@
+/* =========================================================
+   DIU NFE 241B ROUTINE - CUTE ANIMATED CARDS THEME
+   Font: Lexend + JetBrains Mono
+   Style: Pure Animated Cards • Ultra Minimal • Mobile-First
+   ========================================================= */
+
+:root {
+  /* Pastel Ice Palette */
+  --bg-app: #f8fafc;
+  --bg-card: #ffffff;
+  --border-light: #e6edf5;
+
+  /* Theme Accents */
+  --cyan-primary: #0284c7;
+  --cyan-soft: #e0f2fe;
+  --cyan-hover: #0369a1;
+  --cyan-grad: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  
+  /* Live Class Cute Emerald */
+  --emerald: #059669;
+  --emerald-soft: #ecfdf5;
+  --emerald-border: #a7f3d0;
+
+  /* Amber Upcoming / Break */
+  --amber: #d97706;
+  --amber-soft: #fffbeb;
+  --amber-border: #fde68a;
+
+  /* Typography */
+  --text-dark: #0f172a;
+  --text-subtle: #475569;
+  --text-mute: #8896a9;
+
+  /* Radius */
+  --radius-full: 9999px;
+  --radius-2xl: 20px;
+  --radius-xl: 16px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+
+  /* Shadows */
+  --shadow-cute: 0 4px 18px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
+  --shadow-hover: 0 14px 30px -4px rgba(2, 132, 199, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  --shadow-live: 0 8px 25px -2px rgba(5, 150, 105, 0.18), 0 2px 6px rgba(5, 150, 105, 0.08);
+
+  --font-main: 'Lexend', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+  --spring-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle, cute mesh background orbs */
+.mesh-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.mesh-1 {
+  width: 380px;
+  height: 380px;
+  top: -80px;
+  right: -60px;
+  background: radial-gradient(circle, #e0f2fe 0%, #ecfeff 60%, transparent 80%);
+}
+
+.mesh-2 {
+  width: 420px;
+  height: 420px;
+  bottom: -60px;
+  left: -80px;
+  background: radial-gradient(circle, #f0fdf4 0%, #ecfdf5 60%, transparent 80%);
+}
+
+.app-wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 16px 14px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================================================
+   1. TOP NAVIGATION & HEADER
+   ========================================================= */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-cute);
+  gap: 12px;
+  animation: heroEntrance 0.5s var(--spring-ease) both;
+}
+
+.nav-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.brand-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cyan-soft);
+  padding: 2px 9px;
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.cute-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan-primary);
+  box-shadow: 0 0 6px var(--cyan-primary);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.badge-txt {
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--cyan-primary);
+}
+
+.brand-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-heading h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.sec-highlight {
+  color: var(--cyan-primary);
+}
+
+.nav-time-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+}
+
+.time-icon-cute {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.nav-time-card:hover .time-icon-cute {
+  transform: rotate(15deg) scale(1.08);
+}
+
+.time-text-block {
+  text-align: right;
+}
+
+.clock-display {
+  font-family: var(--font-code);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.date-display {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--cyan-primary);
+}
+
+/* =========================================================
+   2. LIVE CLASS RADAR (HERO CARD)
+   ========================================================= */
+.live-hero-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-cute);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+  animation: heroEntrance 0.55s var(--spring-ease) both;
+}
+
+.live-hero-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--cyan-grad);
+}
+
+.live-hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.live-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-code);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: all 0.25s ease;
+}
+
+.pulse-spark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--emerald);
+  position: relative;
+}
+
+/* Live Variations */
+.live-status-pill.live {
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  border: 1px solid var(--emerald-border);
+  animation: liveBadgeGlow 2.5s infinite ease-in-out;
+}
+.live-status-pill.live .pulse-spark {
+  background: var(--emerald);
+}
+.live-status-pill.live .pulse-spark::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--emerald);
+  opacity: 0.55;
+  animation: cute-ping 1.8s infinite;
+}
+
+.live-status-pill.next {
+  background: var(--amber-soft);
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+.live-status-pill.next .pulse-spark {
+  background: var(--amber);
+}
+
+.live-status-pill.off {
+  background: #f1f5f9;
+  color: var(--text-mute);
+  border: 1px solid var(--border-light);
+}
+.live-status-pill.off .pulse-spark {
+  background: var(--text-mute);
+}
+
+.live-time-meta {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-mute);
+}
+
+/* Live Card Body */
+.live-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.live-title-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cute-subject-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--spring-ease);
+}
+
+.live-hero-card:hover .cute-subject-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.subject-info-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.live-subject-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+.live-chips-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cute-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  color: var(--text-subtle);
+  transition: transform 0.2s ease;
+}
+
+.cute-chip:hover {
+  transform: translateY(-1px);
+}
+
+.chip-room {
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  border-color: rgba(2, 132, 199, 0.2);
+  font-family: var(--font-code);
+}
+
+.chip-slot {
+  font-family: var(--font-code);
+}
+
+/* Progress bar inside live card */
+.live-progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 4px;
+}
+
+.progress-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  font-family: var(--font-code);
+  color: var(--text-subtle);
+}
+
+.remaining-highlight {
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.cute-track {
+  width: 100%;
+  height: 7px;
+  background: #e2e8f0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.cute-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #059669);
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cute-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmerSweep 2.5s infinite;
+}
+
+/* Up Next Ribbon */
+.up-next-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  background: #fcfcfd;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  font-size: 0.8rem;
+}
+
+.ribbon-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--amber);
+  background: var(--amber-soft);
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.ribbon-subject-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ribbon-sub {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.ribbon-details {
+  color: var(--text-mute);
+  font-size: 0.75rem;
+}
+
+.ribbon-time-pill {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  background: var(--cyan-soft);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   3. NAVIGATION & DAY SELECTOR
+   ========================================================= */
+.nav-control-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-cute);
+  animation: heroEntrance 0.6s var(--spring-ease) both;
+}
+
+.day-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.cute-today-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--cyan-grad);
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  flex-shrink: 0;
+  min-height: 36px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+  transition: transform 0.2s var(--spring-ease), box-shadow 0.2s ease;
+}
+
+.cute-today-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+}
+
+.cute-today-btn:active {
+  transform: scale(0.95);
+}
+
+.cute-today-btn.is-active-day {
+  background: var(--text-dark);
+  box-shadow: none;
+}
+
+.sparkle-anim {
+  font-size: 0.85rem;
+}
+
+.day-tabs-track {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.day-tabs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.day-tabs {
+  display: inline-flex;
+  background: #f1f5f9;
+  padding: 3px;
+  border-radius: var(--radius-full);
+  gap: 2px;
+}
+
+.tab-item {
+  background: transparent;
+  border: none;
+  font-family: var(--font-main);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+  padding: 5px 13px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  min-height: 30px;
+  transition: all 0.2s var(--spring-ease);
+}
+
+.tab-item:hover {
+  color: var(--text-dark);
+}
+
+.tab-item:active {
+  transform: scale(0.94);
+}
+
+.tab-item.active {
+  background: #ffffff;
+  color: var(--cyan-primary);
+  font-weight: 700;
+  box-shadow: 0 1px 5px rgba(15, 23, 42, 0.08);
+}
+
+.tab-item.has-today-dot::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cyan-primary);
+}
+
+/* =========================================================
+   4. ANIMATED CARDS VIEW
+   ========================================================= */
+.content-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.day-header-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.dh-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dh-left h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.day-pill-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  border: 1px solid rgba(2, 132, 199, 0.2);
+}
+
+.day-pill-badge.off {
+  background: #f1f5f9;
+  color: var(--text-mute);
+  border-color: var(--border-light);
+}
+
+.dh-right {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-mute);
+}
+
+.cards-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+/* =========================================================
+   CARD ENTRANCE & HOVER ANIMATIONS
+   ========================================================= */
+.class-cute-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-2xl);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-cute);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+  
+  /* Staggered entrance animation */
+  animation: cardBounceIn 0.45s var(--spring-ease) both;
+  animation-delay: calc(var(--i, 0) * 0.08s);
+  transition: transform 0.25s var(--spring-ease), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.class-cute-card:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: var(--shadow-hover);
+  border-color: #cbd5e1;
+}
+
+.class-cute-card:active {
+  transform: scale(0.98);
+}
+
+/* Live Class Animated Aura */
+.class-cute-card.is-live {
+  border-color: var(--emerald);
+  background: linear-gradient(135deg, #ffffff 0%, var(--emerald-soft) 100%);
+  box-shadow: var(--shadow-live);
+  animation: cardBounceIn 0.45s var(--spring-ease) both, livePulseBorder 3s infinite ease-in-out;
+  animation-delay: calc(var(--i, 0) * 0.08s), 0.5s;
+}
+
+.class-cute-card.is-live::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5px;
+  background: var(--emerald);
+  border-top-left-radius: var(--radius-2xl);
+  border-bottom-left-radius: var(--radius-2xl);
+}
+
+.class-cute-card.is-passed {
+  opacity: 0.65;
+  background: #fbfcfd;
+}
+
+.card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.time-slot-pill {
+  font-family: var(--font-code);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  background: #f0f9ff;
+  padding: 3px 9px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(2, 132, 199, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.class-cute-card:hover .time-slot-pill {
+  transform: translateY(-1px);
+}
+
+.card-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.chip-live-badge {
+  background: var(--emerald-soft);
+  color: var(--emerald);
+  border: 1px solid var(--emerald-border);
+}
+
+.chip-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--emerald);
+  animation: pulse-dot 1.5s infinite;
+}
+
+.chip-next-badge {
+  background: var(--amber-soft);
+  color: var(--amber);
+  border: 1px solid var(--amber-border);
+}
+
+.chip-done-badge {
+  background: #f1f5f9;
+  color: var(--text-mute);
+}
+
+.chip-slot-badge {
+  background: #f1f5f9;
+  color: var(--text-subtle);
+}
+
+.card-subject-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-subj-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--spring-ease), box-shadow 0.35s ease;
+}
+
+.class-cute-card:hover .card-subj-icon {
+  transform: scale(1.12) rotate(-6deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-subj-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card-subj-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.25;
+}
+
+.card-subj-code {
+  font-size: 0.72rem;
+  color: var(--text-mute);
+}
+
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.meta-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  color: var(--text-subtle);
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.class-cute-card:hover .meta-bubble {
+  background: #f1f5f9;
+}
+
+.meta-bubble-room {
+  font-family: var(--font-code);
+  font-weight: 700;
+  background: var(--cyan-soft);
+  color: var(--cyan-primary);
+  border-color: rgba(2, 132, 199, 0.2);
+}
+
+/* Empty day placeholder card with bounce */
+.cute-empty-card {
+  grid-column: 1 / -1;
+  background: var(--bg-card);
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-2xl);
+  padding: 42px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: cardBounceIn 0.45s var(--spring-ease) both;
+}
+
+.empty-icon-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #fef3c7;
+  color: #b45309;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  animation: iconWiggle 3s infinite ease-in-out;
+}
+
+.cute-empty-card h3 {
+  font-size: 1.15rem;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.cute-empty-card p {
+  font-size: 0.82rem;
+  color: var(--text-subtle);
+  max-width: 380px;
+}
+
+/* =========================================================
+   5. CUTE MINIMAL FOOTER
+   ========================================================= */
+.cute-footer {
+  text-align: center;
+  padding: 14px 0 0;
+  font-size: 0.78rem;
+  color: var(--text-mute);
+}
+
+.footer-content {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-heart {
+  font-size: 0.85rem;
+}
+
+.footer-title {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.footer-sep {
+  color: #cbd5e1;
+}
+
+/* =========================================================
+   ANIMATION KEYFRAMES
+   ========================================================= */
+@keyframes cardBounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.6;
+  }
+}
+
+@keyframes cute-ping {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes livePulseBorder {
+  0%, 100% {
+    border-color: var(--emerald);
+    box-shadow: 0 8px 25px -2px rgba(5, 150, 105, 0.18);
+  }
+  50% {
+    border-color: #34d399;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+  }
+}
+
+@keyframes liveBadgeGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(5, 150, 105, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(5, 150, 105, 0.25);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes iconWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (All Mobile Phones & Devices)
+   ========================================================= */
+@media (max-width: 480px) {
+  .app-wrap {
+    padding: 10px 10px 32px;
+    gap: 10px;
+  }
+
+  .top-nav {
+    padding: 10px 14px;
+    border-radius: var(--radius-xl);
+  }
+
+  .brand-heading h1 {
+    font-size: 1.25rem;
+  }
+
+  .clock-display {
+    font-size: 0.88rem;
+  }
+
+  .nav-time-card {
+    padding: 6px 10px;
+    gap: 6px;
+  }
+
+  .time-icon-cute {
+    width: 26px;
+    height: 26px;
+  }
+
+  .live-hero-card {
+    padding: 14px 15px;
+    border-radius: var(--radius-xl);
+    gap: 10px;
+  }
+
+  .live-subject-name {
+    font-size: 1.2rem;
+  }
+
+  .cute-subject-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav-control-bar {
+    padding: 6px 8px;
+    border-radius: var(--radius-xl);
+  }
+
+  .cute-today-btn {
+    padding: 6px 11px;
+    font-size: 0.78rem;
+    min-height: 32px;
+  }
+
+  .tab-item {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .cards-flow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .class-cute-card {
+    padding: 14px 15px;
+    border-radius: var(--radius-xl);
+  }
+
+  .card-subj-title {
+    font-size: 1.05rem;
+  }
+}

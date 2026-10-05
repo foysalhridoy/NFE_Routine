@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NFE 241B | DIU Class Routine</title>
+  <meta name="description" content="Official Class Routine for NFE 241B - Daffodil International University. Minimal, cute, and live class tracker.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="cute-light-theme">
+  <!-- Subtle Soft Mesh Glows -->
+  <div class="mesh-glow mesh-1"></div>
+  <div class="mesh-glow mesh-2"></div>
+
+  <div class="app-wrap">
+    <!-- 1. Header: Cute & Minimal -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <div class="brand-badge-pill">
+          <span class="cute-dot"></span>
+          <span class="badge-txt">DIU ROUTINE</span>
+        </div>
+        <div class="brand-heading">
+          <h1>NFE <span class="sec-highlight">241B</span></h1>
+        </div>
+      </div>
+
+      <div class="nav-time-card">
+        <div class="time-icon-cute">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="time-text-block">
+          <div class="clock-display" id="currentTime">--:--:-- --</div>
+          <div class="date-display" id="currentDate">--</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2. Live Class Radar (Hero Card) -->
+    <section class="live-hero-card" id="radarCard">
+      <div class="live-hero-header">
+        <div class="live-status-pill" id="radarStatusWrap">
+          <span class="pulse-spark"></span>
+          <span class="status-name" id="radarStatusBadge">CHECKING STATUS</span>
+        </div>
+        <span class="live-time-meta" id="radarMeta">Live Sync</span>
+      </div>
+
+      <div class="live-hero-content">
+        <div class="live-title-row">
+          <div class="cute-subject-icon" id="radarSubjectIcon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+              <path d="M6 6h10"/>
+              <path d="M6 10h10"/>
+            </svg>
+          </div>
+          <div class="subject-info-wrap">
+            <h2 class="live-subject-name" id="radarSubject">Loading class...</h2>
+            <div class="live-chips-row">
+              <span class="cute-chip chip-room" id="radarRoom">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Room: --</span>
+              </span>
+              <span class="cute-chip chip-slot" id="radarTime">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 15 14"/></svg>
+                <span>--:-- - --:--</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Progress Track -->
+        <div class="live-progress-container" id="radarProgressWrap">
+          <div class="progress-info-row">
+            <span id="progressElapsedText">Class Progress</span>
+            <span class="remaining-highlight" id="progressRemainingText">-- mins left</span>
+          </div>
+          <div class="cute-track">
+            <div class="cute-fill" id="radarProgressBar" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Up Next Mini Ribbon -->
+      <div class="up-next-ribbon" id="radarNextCard">
+        <div class="ribbon-tag">
+          <span class="ribbon-star">✨</span>
+          <span>UP NEXT</span>
+        </div>
+        <div class="ribbon-subject-block">
+          <span class="ribbon-sub" id="nextSubject">--</span>
+          <span class="ribbon-details" id="nextDetails">--</span>
+        </div>
+        <div class="ribbon-time-pill" id="nextCountdown">--</div>
+      </div>
+    </section>
+
+    <!-- 3. Navigation Controls Bar -->
+    <nav class="nav-control-bar">
+      <div class="day-selector-group">
+        <button class="cute-today-btn" id="todayQuickBtn" title="Go to Today">
+          <span class="sparkle-anim">✨</span>
+          <span>Today</span>
+        </button>
+
+        <div class="day-tabs-track">
+          <div class="day-tabs" id="dayTabs">
+            <button class="tab-item" data-day="Saturday">Sat</button>
+            <button class="tab-item" data-day="Sunday">Sun</button>
+            <button class="tab-item" data-day="Monday">Mon</button>
+            <button class="tab-item" data-day="Tuesday">Tue</button>
+            <button class="tab-item" data-day="Wednesday">Wed</button>
+            <button class="tab-item" data-day="Thursday">Thu</button>
+            <button class="tab-item" data-day="Friday">Fri</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 4. Main Section: Cards View -->
+    <main class="content-view" id="cardsView">
+      <div class="day-header-strip">
+        <div class="dh-left">
+          <h2 id="activeDayHeading">Saturday</h2>
+          <span class="day-pill-badge" id="activeDayPill">Class Day</span>
+        </div>
+        <div class="dh-right" id="daySummaryStat">--</div>
+      </div>
+
+      <div class="cards-flow" id="cardsGrid">
+        <!-- Rendered by app.js -->
+      </div>
+    </main>
+
+    <!-- 6. Clean Minimal Footer -->
+    <footer class="cute-footer">
+      <div class="footer-content">
+        <span class="footer-heart">✨</span>
+        <span class="footer-title">NFE 241B</span>
+        <span class="footer-sep">•</span>
+        <span>Nutrition & Food Engineering</span>
+        <span class="footer-sep">•</span>
+        <span>DIU</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
